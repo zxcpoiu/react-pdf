@@ -17,9 +17,6 @@
     "build": "rimraf ./lib && rimraf ./src/font/data/*.b64.afm && node ./src/font/data/compressData.js && rollup -c ",
     "watch": "rimraf ./lib && rimraf ./src/font/data/*.b64.afm && node ./src/font/data/compressData.js && rollup -c -w"
   },
-  "files": [
-    "lib"
-  ],
   "dependencies": {
     "@react-pdf/fontkit": "^2.0.6",
     "@react-pdf/png-js": "^2.0.2",

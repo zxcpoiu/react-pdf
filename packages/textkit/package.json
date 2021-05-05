@@ -13,9 +13,6 @@
     "build": "rimraf ./lib && babel src --out-dir lib",
     "watch": "rimraf ./lib && babel src --out-dir lib --watch"
   },
-  "files": [
-    "lib"
-  ],
   "dependencies": {
     "@babel/runtime": "^7.4.3",
     "@react-pdf/unicode-properties": "^2.4.1",

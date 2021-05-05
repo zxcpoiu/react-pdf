@@ -20,8 +20,5 @@
   "repository": {
     "type": "git",
     "url": "git://github.com/devongovett/unicode-properties.git"
-  },
-  "files": [
-    "lib"
-  ]
+  }
 }

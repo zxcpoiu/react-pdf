@@ -13,10 +13,6 @@
     "build": "./build.sh",
     "postbuild": "node ./postbuild.js"
   },
-  "files": [
-    "src",
-    "index.d.ts"
-  ],
   "dependencies": {
     "@types/yoga-layout": "^1.9.3"
   }

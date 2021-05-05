@@ -43,10 +43,6 @@
       "git add"
     ]
   },
-  "files": [
-    "lib",
-    "index.d.ts"
-  ],
   "collective": {
     "type": "opencollective",
     "url": "https://opencollective.com/react-pdf",
