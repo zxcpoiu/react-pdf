@@ -8,4 +8,7 @@ export default [
   'Times-Roman',
   'Times-Bold',
   'Times-Italic',
+  'TaipeiSansTCBeta-Light',
+  'TaipeiSansTCBeta-Regular',
+  'TaipeiSansTCBeta-Bold',
 ];

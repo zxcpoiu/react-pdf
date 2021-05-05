@@ -9,6 +9,9 @@ import HelveticaOblique from './data/Helvetica-Oblique.b64.afm';
 import TimesRoman from './data/Times-Roman.b64.afm';
 import TimesBold from './data/Times-Bold.b64.afm';
 import TimesItalic from './data/Times-Italic.b64.afm';
+import TaipeiSansTCBetaLight from './data/TaipeiSansTCBeta-Light.b64.afm';
+import TaipeiSansTCBetaRegular from './data/TaipeiSansTCBeta-Regular.b64.afm';
+import TaipeiSansTCBetaBold from './data/TaipeiSansTCBeta-Bold.b64.afm';
 
 const STANDARD_FONTS = {
   Courier: LZString.decompressFromBase64(Courier),
@@ -20,6 +23,9 @@ const STANDARD_FONTS = {
   'Times-Roman': LZString.decompressFromBase64(TimesRoman),
   'Times-Bold': LZString.decompressFromBase64(TimesBold),
   'Times-Italic': LZString.decompressFromBase64(TimesItalic),
+  'TaipeiSansTCBeta-Light': LZString.decompressFromBase64(TaipeiSansTCBetaLight),
+  'TaipeiSansTCBeta-Regular': LZString.decompressFromBase64(TaipeiSansTCBetaRegular),
+  'TaipeiSansTCBeta-Bold': LZString.decompressFromBase64(TaipeiSansTCBetaBold),
 };
 
 const createStandardFont = PDFFont =>

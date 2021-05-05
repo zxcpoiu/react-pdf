@@ -58,6 +58,10 @@ class StandardFont {
       case 'Courier-Bold':
       case 'Courier-Oblique':
         return 550;
+      case 'TaipeiSansTCBeta-Light':
+      case 'TaipeiSansTCBeta-Regular':
+      case 'TaipeiSansTCBeta-Bold':
+        return 690;
       default:
         return 690;
     }
@@ -74,6 +78,10 @@ class StandardFont {
       case 'Courier-Bold':
       case 'Courier-Oblique':
         return 390;
+      case 'TaipeiSansTCBeta-Light':
+      case 'TaipeiSansTCBeta-Regular':
+      case 'TaipeiSansTCBeta-Bold':
+        return 490;
       default:
         return 490;
     }
@@ -90,6 +98,10 @@ class StandardFont {
       case 'Courier-Bold':
       case 'Courier-Oblique':
         return -230;
+      case 'TaipeiSansTCBeta-Light':
+      case 'TaipeiSansTCBeta-Regular':
+      case 'TaipeiSansTCBeta-Bold':
+        return -200;
       default:
         return -200;
     }
