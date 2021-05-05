@@ -1,5 +1,4 @@
 import fs from 'fs';
-import range from '../utils/range';
 
 const WIN_ANSI_MAP = {
   402: 131,
@@ -28,7 +27,7 @@ const WIN_ANSI_MAP = {
   353: 154,
   376: 159,
   381: 142,
-  382: 158,
+  382: 158
 };
 
 const characters = `\
@@ -40,7 +39,7 @@ const characters = `\
 .notdef       .notdef        .notdef        .notdef
 .notdef       .notdef        .notdef        .notdef
 .notdef       .notdef        .notdef        .notdef
-
+  
 space         exclam         quotedbl       numbersign
 dollar        percent        ampersand      quotesingle
 parenleft     parenright     asterisk       plus
@@ -49,7 +48,7 @@ zero          one            two            three
 four          five           six            seven
 eight         nine           colon          semicolon
 less          equal          greater        question
-
+  
 at            A              B              C
 D             E              F              G
 H             I              J              K
@@ -58,7 +57,7 @@ P             Q              R              S
 T             U              V              W
 X             Y              Z              bracketleft
 backslash     bracketright   asciicircum    underscore
-
+  
 grave         a              b              c
 d             e              f              g
 h             i              j              k
@@ -67,7 +66,7 @@ p             q              r              s
 t             u              v              w
 x             y              z              braceleft
 bar           braceright     asciitilde     .notdef
-
+  
 Euro          .notdef        quotesinglbase florin
 quotedblbase  ellipsis       dagger         daggerdbl
 circumflex    perthousand    Scaron         guilsinglleft
@@ -76,7 +75,7 @@ OE            .notdef        Zcaron         .notdef
 quotedblright bullet         endash         emdash
 tilde         trademark      scaron         guilsinglright
 oe            .notdef        zcaron         ydieresis
-
+  
 space         exclamdown     cent           sterling
 currency      yen            brokenbar      section
 dieresis      copyright      ordfeminine    guillemotleft
@@ -85,7 +84,7 @@ degree        plusminus      twosuperior    threesuperior
 acute         mu             paragraph      periodcentered
 cedilla       onesuperior    ordmasculine   guillemotright
 onequarter    onehalf        threequarters  questiondown
-
+  
 Agrave        Aacute         Acircumflex    Atilde
 Adieresis     Aring          AE             Ccedilla
 Egrave        Eacute         Ecircumflex    Edieresis
@@ -94,7 +93,7 @@ Eth           Ntilde         Ograve         Oacute
 Ocircumflex   Otilde         Odieresis      multiply
 Oslash        Ugrave         Uacute         Ucircumflex
 Udieresis     Yacute         Thorn          germandbls
-
+  
 agrave        aacute         acircumflex    atilde
 adieresis     aring          ae             ccedilla
 egrave        eacute         ecircumflex    edieresis
@@ -107,9 +106,6 @@ udieresis     yacute         thorn          ydieresis\
 
 class AFMFont {
   static open(filename) {
-    if (BROWSER) {
-      throw new Error('AFMFont.open not available on browser build');
-    }
     return new AFMFont(fs.readFileSync(filename, 'utf8'));
   }
 
@@ -121,12 +117,13 @@ class AFMFont {
     this.kernPairs = {};
 
     this.parse();
-    this.charWidths = range(0, 255, true).map(
-      i => this.glyphWidths[characters[i]],
-    );
-    this.bbox = Array.from(this.attributes['FontBBox'].split(/\s+/)).map(
-      e => +e,
-    );
+    // todo: remove charWidths since appears to not be used
+    this.charWidths = new Array(256);
+    for (let char = 0; char <= 255; char++) {
+      this.charWidths[char] = this.glyphWidths[characters[char]];
+    }
+
+    this.bbox = this.attributes['FontBBox'].split(/\s+/).map(e => +e);
     this.ascender = +(this.attributes['Ascender'] || 0);
     this.descender = +(this.attributes['Descender'] || 0);
     this.xHeight = +(this.attributes['XHeight'] || 0);
@@ -137,7 +134,7 @@ class AFMFont {
 
   parse() {
     let section = '';
-    for (let line of Array.from(this.contents.split('\n'))) {
+    for (let line of this.contents.split('\n')) {
       var match;
       var a;
       if ((match = line.match(/^Start(\w+)/))) {
@@ -184,11 +181,7 @@ class AFMFont {
 
   encodeText(text) {
     const res = [];
-    for (
-      let i = 0, end = text.length, asc = 0 <= end;
-      asc ? i < end : i > end;
-      asc ? i++ : i--
-    ) {
+    for (let i = 0, len = text.length; i < len; i++) {
       let char = text.charCodeAt(i);
       char = WIN_ANSI_MAP[char] || char;
       res.push(char.toString(16));
@@ -200,11 +193,7 @@ class AFMFont {
   glyphsForString(string) {
     const glyphs = [];
 
-    for (
-      let i = 0, end = string.length, asc = 0 <= end;
-      asc ? i < end : i > end;
-      asc ? i++ : i--
-    ) {
+    for (let i = 0, len = string.length; i < len; i++) {
       const charCode = string.charCodeAt(i);
       glyphs.push(this.characterToGlyph(charCode));
     }
