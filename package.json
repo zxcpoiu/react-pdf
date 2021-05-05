@@ -79,5 +79,11 @@
       "pre-commit": "git add . && lint-staged"
     }
   },
-  "dependencies": {}
+  "dependencies": {},
+  "main": "./packages/renderer/lib/react-pdf.cjs.js",
+  "module": "./packages/renderer/lib/react-pdf.es.js",
+  "browser": {
+    "./packages/renderer/lib/react-pdf.es.js": "./packages/renderer/lib/react-pdf.browser.es.js",
+    "./packages/renderer/lib/react-pdf.cjs.js": "./packages/renderer/lib/react-pdf.browser.cjs.js"
+  }
 }
