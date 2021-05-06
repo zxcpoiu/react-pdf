@@ -165,7 +165,11 @@ class AFMFont {
           if (!/^CH?\s/.test(line)) {
             continue;
           }
-          var name = line.match(/\bN\s+(\.?\w+)\s*;/)[1];
+          // --- this assumed the PostScript character name is `xxx` or `.xxx`
+          // --- but some fonts will have `Identity.1234` or `Identity.name.1234`, not sure if it's valid or not
+          // --- this lib use afm version 4.1
+          // var name = line.match(/\bN\s+(\.?\w+)\s*;/)[1];
+          var name = line.match(/\bN\s+(\w*\.?\w*\.?\w+)\s*;/)[1];
           this.glyphWidths[name] = +line.match(/\bWX\s+(\d+)\s*;/)[1];
           break;
 
